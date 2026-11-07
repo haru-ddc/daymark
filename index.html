@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f5">
+  <meta name="description" content="A calm, simple space to keep track of today's tasks.">
+  <title>Daymark — daily tasks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Daymark home"><span class="brand-mark">d.</span><span>daymark</span></a>
+      <span class="saved-note"><span class="status-dot"></span> Saved on this device</span>
+    </header>
+
+    <section class="intro" aria-labelledby="greeting">
+      <p class="eyebrow" id="today-label">YOUR DAY, AT A GLANCE</p>
+      <h1 id="greeting">Make today <em>count.</em></h1>
+      <p class="subhead">A little progress goes a long way. What’s on your mind?</p>
+    </section>
+
+    <section class="board" aria-label="Your daily tasks">
+      <form id="task-form" class="composer">
+        <span class="plus" aria-hidden="true">+</span>
+        <label class="sr-only" for="task-input">Add a task</label>
+        <input id="task-input" type="text" maxlength="120" placeholder="Add a task to your day…" autocomplete="off" required>
+        <button type="submit">Add task <span aria-hidden="true">↗</span></button>
+      </form>
+
+      <div class="list-heading">
+        <div><span class="section-title">Your list</span><span class="count" id="task-count">0 tasks</span></div>
+        <button class="clear-button" id="clear-completed" type="button" hidden>Clear completed</button>
+      </div>
+
+      <ul id="task-list" class="task-list" aria-live="polite"></ul>
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon" aria-hidden="true">✳</div>
+        <p class="empty-title">A fresh page.</p>
+        <p>Your tasks will find a home here.<br>Start with one small thing.</p>
+      </div>
+
+      <footer class="board-footer">
+        <span id="progress-label">You’ve got this.</span>
+        <span class="progress-track"><span id="progress-fill"></span></span>
+      </footer>
+    </section>
+    <footer class="page-footer"><span>Made for the things that matter.</span><span>Take it one task at a time <span class="heart">✳</span></span></footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
