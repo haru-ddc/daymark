@@ -15,7 +15,7 @@
   <main class="shell">
     <header class="topbar">
       <a class="brand" href="#" aria-label="Daymark home"><span class="brand-mark">d.</span><span>daymark</span></a>
-      <span class="saved-note"><span class="status-dot"></span> Saved on this device</span>
+      <div class="header-actions"><span class="saved-note"><span class="status-dot"></span> Saved on this device</span><button class="icon-button" id="theme-toggle" type="button" aria-label="Switch to dark mode" title="Toggle dark mode">☾</button></div>
     </header>
 
     <section class="intro" aria-labelledby="greeting">
@@ -29,28 +29,26 @@
         <span class="plus" aria-hidden="true">+</span>
         <label class="sr-only" for="task-input">Add a task</label>
         <input id="task-input" type="text" maxlength="120" placeholder="Add a task to your day…" autocomplete="off" required>
-        <button type="submit">Add task <span aria-hidden="true">↗</span></button>
+        <label class="sr-only" for="task-date">Due date</label><input id="task-date" class="date-input" type="date" aria-label="Due date" title="Due date">
+        <label class="sr-only" for="task-category">Category</label><select id="task-category" aria-label="Category"><option>Personal</option><option>Work</option><option>Study</option><option>Health</option></select>
+        <label class="sr-only" for="task-priority">Priority</label><select id="task-priority" aria-label="Priority"><option value="normal">Normal</option><option value="high">High priority</option><option value="low">Low priority</option></select>
+        <button type="submit" id="submit-task">Add task <span aria-hidden="true">↗</span></button>
       </form>
 
+      <div id="reminders" class="reminders" role="status" hidden></div>
       <div class="list-heading">
         <div><span class="section-title">Your list</span><span class="count" id="task-count">0 tasks</span></div>
-        <button class="clear-button" id="clear-completed" type="button" hidden>Clear completed</button>
+        <div class="list-actions"><button class="clear-button" id="export-tasks" type="button">Export backup</button><button class="clear-button" id="import-button" type="button">Import</button><input id="import-file" type="file" accept="application/json,.json" hidden><button class="clear-button" id="clear-completed" type="button" hidden>Clear completed</button></div>
       </div>
-
+      <nav class="filters" aria-label="Filter tasks"><button class="filter active" data-filter="all" type="button">All</button><button class="filter" data-filter="active" type="button">Active</button><button class="filter" data-filter="completed" type="button">Completed</button></nav>
       <ul id="task-list" class="task-list" aria-live="polite"></ul>
-      <div id="empty-state" class="empty-state">
-        <div class="empty-icon" aria-hidden="true">✳</div>
-        <p class="empty-title">A fresh page.</p>
-        <p>Your tasks will find a home here.<br>Start with one small thing.</p>
-      </div>
-
-      <footer class="board-footer">
-        <span id="progress-label">You’ve got this.</span>
-        <span class="progress-track"><span id="progress-fill"></span></span>
-      </footer>
+      <div id="empty-state" class="empty-state"><div class="empty-icon" aria-hidden="true">✳</div><p class="empty-title">A fresh page.</p><p>Your tasks will find a home here.<br>Start with one small thing.</p></div>
+      <footer class="board-footer"><span id="progress-label">You’ve got this.</span><span class="progress-track"><span id="progress-fill"></span></span></footer>
     </section>
     <footer class="page-footer"><span>Made for the things that matter.</span><span>Take it one task at a time <span class="heart">✳</span></span></footer>
   </main>
+
+  <dialog id="edit-dialog"><form method="dialog" id="edit-form"><div class="dialog-head"><h2>Edit task</h2><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label for="edit-text">Task</label><input id="edit-text" maxlength="120" required><div class="edit-grid"><div><label for="edit-date">Due date</label><input id="edit-date" type="date"></div><div><label for="edit-category">Category</label><select id="edit-category"><option>Personal</option><option>Work</option><option>Study</option><option>Health</option></select></div><div><label for="edit-priority">Priority</label><select id="edit-priority"><option value="normal">Normal</option><option value="high">High priority</option><option value="low">Low priority</option></select></div></div><div class="dialog-actions"><button class="secondary-button" value="cancel">Cancel</button><button class="primary-button" id="save-edit" value="default">Save changes</button></div></form></dialog>
   <script src="app.js"></script>
 </body>
 </html>
